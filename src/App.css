@@ -1,0 +1,33 @@
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #161616;
+  border-bottom: 1px solid #333;
+}
+
+.nav-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e0e0e0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  color: #999;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-link:hover {
+  color: #e0e0e0;
+  background: #2d2d2d;
+}
