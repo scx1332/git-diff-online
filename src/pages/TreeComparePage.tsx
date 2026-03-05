@@ -33,6 +33,11 @@ export default function TreeComparePage() {
     }
   };
 
+  const handleClear = () => {
+    setLeftInput("");
+    setRightInput("");
+  };
+
   return (
     <div className="tree-compare-page">
       <div className="page-header">
@@ -50,7 +55,7 @@ export default function TreeComparePage() {
         <button onClick={() => loadSample("small")}>
           Load Small Sample
         </button>
-        <button onClick={() => { setLeftInput(""); setRightInput(""); }}>
+        <button onClick={handleClear}>
           Clear
         </button>
       </div>

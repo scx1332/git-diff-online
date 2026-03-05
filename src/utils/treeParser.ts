@@ -61,16 +61,17 @@ export function parseTree(input: string): TreeNode {
     );
     if (!nameMatch) continue;
 
-    const name = nameMatch[1].replace(/[\\/]$/, "").trim();
+    const rawName = nameMatch[1].trim();
+    const trailingSlash = rawName.endsWith("/");
+    const name = rawName.replace(/[\\/]$/, "").trim();
     if (!name) continue;
 
     // Calculate depth by looking at the prefix part
-    const prefixEnd = line.indexOf(name);
+    const prefixEnd = line.indexOf(rawName);
     const prefix = line.substring(0, prefixEnd);
     // Each depth level is ~4 characters in the prefix
     const depth = Math.round(prefix.replace(connectorPattern, "X").length / 4);
 
-    const isDirectory = line.endsWith("/") || !name.includes(".");
     // Pop stack to correct parent
     while (stack.length > depth) {
       stack.pop();
@@ -80,16 +81,27 @@ export function parseTree(input: string): TreeNode {
     const node: TreeNode = {
       name,
       path: parent.path + "/" + name,
-      isDirectory,
+      isDirectory: trailingSlash,
       children: [],
       depth,
     };
 
     parent.children.push(node);
-    if (isDirectory) {
-      stack.push(node);
+    // Always push to stack so subsequent deeper entries become children.
+    // We'll mark nodes with children as directories in a post-processing step.
+    stack.push(node);
+  }
+
+  // Post-process: any node that has children is a directory
+  function markDirectories(node: TreeNode) {
+    if (node.children.length > 0) {
+      node.isDirectory = true;
+    }
+    for (const child of node.children) {
+      markDirectories(child);
     }
   }
+  markDirectories(root);
 
   return root;
 }

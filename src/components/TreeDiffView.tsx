@@ -46,12 +46,12 @@ export default function TreeDiffView({
       <div className="tree-diff__body">
         <div className="tree-diff__column">
           {left.map((entry, i) => (
-            <EntryRow key={i} entry={entry} />
+            <EntryRow key={entry?.path ?? `empty-left-${i}`} entry={entry} />
           ))}
         </div>
         <div className="tree-diff__column">
           {right.map((entry, i) => (
-            <EntryRow key={i} entry={entry} />
+            <EntryRow key={entry?.path ?? `empty-right-${i}`} entry={entry} />
           ))}
         </div>
       </div>
