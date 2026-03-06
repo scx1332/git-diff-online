@@ -1,0 +1,83 @@
+.tree-diff {
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  font-size: 14px;
+  background: #1e1e1e;
+}
+
+.tree-diff__header {
+  display: flex;
+  background: #2d2d2d;
+  border-bottom: 1px solid #444;
+}
+
+.tree-diff__label {
+  flex: 1;
+  padding: 10px 16px;
+  font-weight: 600;
+  color: #ccc;
+  text-align: center;
+}
+
+.tree-diff__label--left {
+  border-right: 1px solid #444;
+}
+
+.tree-diff__body {
+  display: flex;
+}
+
+.tree-diff__column {
+  flex: 1;
+  min-width: 0;
+}
+
+.tree-diff__column:first-child {
+  border-right: 1px solid #333;
+}
+
+.tree-row {
+  padding: 3px 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 26px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #2a2a2a;
+  color: #d4d4d4;
+}
+
+.tree-row--empty {
+  background: #1a1a1a;
+}
+
+.tree-row--same {
+  background: transparent;
+}
+
+.tree-row--added {
+  background: rgba(35, 134, 54, 0.2);
+  color: #7ee787;
+}
+
+.tree-row--removed {
+  background: rgba(218, 54, 51, 0.2);
+  color: #ffa198;
+}
+
+.tree-row--modified {
+  background: rgba(187, 128, 9, 0.2);
+  color: #e3b341;
+}
+
+.tree-icon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.tree-name {
+  user-select: text;
+}
